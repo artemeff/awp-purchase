@@ -39,8 +39,12 @@
         <td><%= order_product.name %></td>
         <td><%= order_product.supplier_name %></td>
         <td style="text-align:right"><%= number_with_delimiter(order_product.quantity, locale: :ru) %></td>
-        <td style="text-align:right"><%= number_to_currency(order_product.price, locale: :ru) %></td>
-        <td style="text-align:right"><%= number_to_currency(order_product.total, locale: :ru) %></td>
+        <% if order_product.supplier_storage.present? %>
+          <td style="text-align:right"><%= number_to_currency(order_product.price, locale: :ru) %></td>
+          <td style="text-align:right"><%= number_to_currency(order_product.total, locale: :ru) %></td>
+        <% else %>
+          <td style="text-align:right" colspan="2">продукции нет на складе поставщика</td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

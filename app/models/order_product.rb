@@ -14,8 +14,16 @@ class OrderProduct < ActiveRecord::Base
     supplier.name
   end
 
+  def supplier_storage
+    supplier.storages.where(product_id: product.id).first
+  end
+
   def price
-    supplier.storages.where(product_id: product.id).first.price
+    if supplier_storage.present?
+      supplier_storage.price
+    else
+      0
+    end
   end
 
   def total
