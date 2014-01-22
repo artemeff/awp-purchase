@@ -15,7 +15,7 @@ class OrderProduct < ActiveRecord::Base
   end
 
   def price
-    supplier.storages.where('product_id = ?', product.id).first.price
+    supplier.storages.where(product_id: product.id).first.price
   end
 
   def total
