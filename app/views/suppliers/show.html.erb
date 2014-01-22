@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @supplier.name %><small> <%= link_to 'редактировать', edit_supplier_path(@supplier) %></small></h1>
+
+<% unless @supplier.storages.empty? %>
+
+<h3>Склад</h3>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th style="text-align:right" width="200px">Количество</th>
+      <th style="text-align:right" width="200px">Цена (за штуку)</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @storages.each do |storage| %>
+      <tr>
+        <td><%= storage.product.name %></td>
+        <td style="text-align:right"><%= number_with_delimiter(storage.quantity, locale: :ru) %></td>
+        <td style="text-align:right"><%= number_to_currency(storage.price, locale: :ru) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>

@@ -1,0 +1,48 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br>
+
+  <div class="field">
+    <%= f.label 'Менеджер' %><br>
+    <%= collection_select(:order, :manager_id, all_users, :id, :name, { prompt: 'не назначен' }) %>
+  </div>
+  
+  <br>
+
+  <div class="field">
+    <%= f.label 'Подтвержден?' %><br>
+    <%= f.check_box :approved %>
+  </div>
+
+
+  <hr>
+
+  <h1>Необходимое сырье (продукция)</h1>
+
+  <br>
+
+  <fieldset id="recipe-ingredients">
+    <%= f.fields_for :order_products do |order_product| %>
+      <%= render 'order_product_fields', :f => order_product %>
+    <% end %>
+    <%= link_to_add_association 'добавить', f, :order_products %>
+  </fieldset>
+
+  <br>
+  <br>
+
+  <div class="actions">
+    <%= f.submit 'Сохранить' %>
+  </div>
+<% end %>

@@ -1,0 +1,38 @@
+<%= form_for(@supplier) do |f| %>
+  <% if @supplier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
+
+      <ul>
+      <% @supplier.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <hr>
+
+  <h1>Редактирование склада</h1>
+
+  <br>
+
+  <fieldset id="recipe-ingredients">
+    <%= f.fields_for :storages do |storage| %>
+      <%= render 'storage_fields', :f => storage %>
+    <% end %>
+    <%= link_to_add_association 'добавить продукт на склад', f, :storages %>
+  </fieldset>
+
+  <br>
+  <br>
+
+  <div class="actions">
+    <%= f.submit "Сохранить" %>
+  </div>
+<% end %>

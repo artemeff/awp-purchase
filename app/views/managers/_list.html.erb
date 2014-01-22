@@ -1,0 +1,29 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th style="width:60px"></th>
+      <th>Имя</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @managers.each do |manager| %>
+      <tr>
+        <td class="resource-management">
+          <%= link_to edit_manager_path(manager) do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+
+          <%= link_to manager, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </td>
+        <td><%= link_to manager.name, manager %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Добавить', new_manager_path %>

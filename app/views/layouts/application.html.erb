@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AwpPurchase</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div id="main" class="container">
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <%= link_to "АРМ", root_path, class: 'navbar-brand' %>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><%= active_link_to 'Заказы', orders_path %></li>
+          <li><%= active_link_to 'Поставщики', suppliers_path %></li>
+          <li><%= active_link_to 'Менеджеры', managers_path %></li>
+          <li><%= active_link_to 'Продукты', products_path %></li>
+        </ul>
+
+        <!--ul class="nav navbar-nav navbar-right">
+          <li><%= active_link_to "вы зашли как #{first_user.name}", manager_path(first_user) %></li>
+        </ul-->
+      </div>
+    </div>
+
+    <%= yield %>
+
+    <div class="footer" style="color:#afafaf">
+      2014 Yuri Artemev, for MESI university;
+    </div>
+
+  </div> <!-- /container -->
+
+</body>
+</html>

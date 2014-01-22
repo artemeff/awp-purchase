@@ -1,0 +1,41 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th style="width:60px"></th>
+      <th># Заказа</th>
+      <th>Менеджер</th>
+      <th>Утвержден?</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td class="resource-management">
+          <%= link_to edit_order_path(order) do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+
+          <%= link_to order, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </td>
+        <td><%= link_to "##{order.id}", order %></td>
+        <td>
+          <% if order.manager.present? %>
+            <%= link_to order.manager.name, order.manager %>
+          <% else %>
+            не назначен
+          <% end %>
+        </td>
+        <td>
+          <% if order.approved? %>
+            <span class="glyphicon glyphicon-check"></span>
+          <% else %>
+            <span class="glyphicon glyphicon-unchecked"></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

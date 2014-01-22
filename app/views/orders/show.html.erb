@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Заказ #<%= @order.id %><small> <%= link_to 'редактировать', edit_order_path(@order) %></small></h1>
+
+<br>
+
+<p>
+  <strong>Менеджер:</strong>
+  <%= @order.manager.present? ? @order.manager.name : 'не назначен' %>
+</p>
+
+<p>
+  <strong>Подтвержден?</strong>
+  <% if @order.approved? %>
+    <span class="glyphicon glyphicon-check"></span>
+  <% else %>
+    <span class="glyphicon glyphicon-unchecked"></span>
+  <% end %>
+</p>
+
+<br>
+
+<h3>Необходимое сырье (продукция)</h3>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Поставщик</th>
+      <th style="text-align:right" width="150px">Количество</th>
+      <th style="text-align:right" width="150px">Цена (за штуку)</th>
+      <th style="text-align:right" width="150px">Цена (всего)</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order.order_products.each do |order_product| %>
+      <tr>
+        <td><%= order_product.name %></td>
+        <td><%= order_product.supplier_name %></td>
+        <td style="text-align:right"><%= number_with_delimiter(order_product.quantity, locale: :ru) %></td>
+        <td style="text-align:right"><%= number_to_currency(order_product.price, locale: :ru) %></td>
+        <td style="text-align:right"><%= number_to_currency(order_product.total, locale: :ru) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

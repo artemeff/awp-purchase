@@ -1,0 +1,25 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th style="width:60px"></th>
+      <th>Название</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td class="resource-management">
+          <%= link_to edit_product_path(product) do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+
+          <%= link_to product, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </td>
+        <td><%= link_to product.name, product %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,22 @@
+<fieldset id="order-product-meta" class="nested-fields">
+  <div class="field">
+    <%= f.label :title, "Поставщик", class: "control-label" %>
+    <div class="controls">
+      <%= f.select :supplier_id, all_suppliers.collect {|x| [x.name, x.id]}, {}, multiple: false %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :title, "Продукт", class: "control-label" %>
+    <div class="controls">
+      <%= f.select :product_id, all_products.collect {|x| [x.name, x.id]}, {}, multiple: false %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :title, "Количество", class: "control-label" %>
+    <div class="controls"><%= f.text_field :quantity %></div>
+  </div>
+  <div class="field">
+    <%= link_to_remove_association "удалить", f %>
+  </div>
+  <hr>
+</fieldset>
