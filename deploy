@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ssh awp "
+  cd /home/rails;
+  git pull;
+  rake db:migrate RAILS_ENV=production;
+  rake assets:precompile RAILS_ENV=production;
+  sudo service unicorn restart
+"
