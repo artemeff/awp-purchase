@@ -47,5 +47,10 @@
         <% end %>
       </tr>
     <% end %>
+    <tr>
+      <td colspan="5" style="text-align:right">
+        <%= number_to_currency(@order.order_products.map(&:total).inject { |total, current| total + current }, locale: :ru) %>
+      </td>
+    </tr>
   </tbody>
 </table>
