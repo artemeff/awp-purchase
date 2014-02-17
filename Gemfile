@@ -14,6 +14,5 @@ gem 'cocoon'
 gem 'active_link_to'
 
 gem 'unicorn'
-gem 'capistrano', group: :development
 
 gem 'anjlab-bootstrap-rails', '3.0.3.0', :require => 'bootstrap-rails'
